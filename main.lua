@@ -1,16 +1,22 @@
-local input = require "module.input"
 
 function love.load(args)
-
+  require("library.vector")
+  require("entity")
+  require("input")
+  require("player")
+  
+  input:init()
+  player:init(love.graphics.getWidth()/2, love.graphics.getHeight()/2)
 end
 
 function love.update(dt)
-
+  mouse.x, mouse.y = love.mouse.getPosition()
+  entity:update(dt)
 end
 
 function love.draw()
-love.graphics.print("Hello World!", 10, 10)
-input.debugPrint()
+  entity:draw()
+  input:draw()
 end
 
 function love.mousepressed(x, y, button)
