@@ -8,6 +8,8 @@ function player:init(x, y, r)
   self.width = 50
   self.height = 50
   self.canvas = love.graphics.newCanvas(self.width, self.height)
+  self.unlocked = false
+  self.lockControl = false
 end
 
 function player:update(dt)
@@ -27,7 +29,11 @@ function player:update(dt)
   end
   
   self.pos = self.pos + self.vel * dt
-  self.rotation = mouse.angle(self.pos)
+  if self.unlocked or keylist.tab then
+    self.rotation = mouse.angle(self.pos)
+  else
+    self.rotation = math.atan2(self.vel.y, self.vel.x)
+  end
 end
 
 function player:draw()
