@@ -1,5 +1,6 @@
 
 function love.load(args)
+  require("library.util")
   require("library.vector")
   require("entity")
   require("input")
