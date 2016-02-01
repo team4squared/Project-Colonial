@@ -4,33 +4,32 @@ player = entity:new()
 function player:init(x, y, r)
   self.pos = Vec2(x or 0, y or 0) --Position
   self.vel = Vec2(0, 0) --Velocity
+  self.speed = 200
   self.rotation = r or 0 --Rotation
   self.width = 192
   self.height = 192
   self.canvas = love.graphics.newCanvas(self.width, self.height)
   self.image = love.graphics.newImage("images/temp_player.png")
-  self.unlocked = true
-  self.lockControl = false
 end
 
 function player:update(dt)
   if keylist.w then
-    self.vel.y = -100
+    self.vel.y = -self.speed
   elseif keylist.s then
-    self.vel.y = 100
+    self.vel.y = self.speed
   elseif not keylist.w and not keylist.s then
     self.vel.y = 0
   end
   if keylist.a then
-    self.vel.x = -100
+    self.vel.x = -self.speed
   elseif keylist.d then
-    self.vel.x = 100
+    self.vel.x = self.speed
   elseif not keylist.a and not keylist.d then
     self.vel.x = 0
   end
   
   self.pos = self.pos + self.vel * dt
-  if self.unlocked or keylist.tab then
+  if mouse.button[1] or keylist.tab then
     self.rotation = mouse.angle(self.pos)
   elseif self.vel ~= 0 then
     self.rotation = math.atan2(self.vel.y, self.vel.x)

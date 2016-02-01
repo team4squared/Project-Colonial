@@ -13,6 +13,7 @@ function love.load(args)
   
   input:init()
   player:init(love.graphics.getWidth()/2, love.graphics.getHeight()/2)
+  portal:debugGen()
 end
 
 function love.update(dt)
