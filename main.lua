@@ -18,6 +18,7 @@ end
 function love.update(dt)
   mouse.x, mouse.y = love.mouse.getPosition()
   entity:update(dt)
+  printr:update(dt)
 end
 
 function love.draw()
