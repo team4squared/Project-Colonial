@@ -37,6 +37,10 @@ function Vec2(x, y)
     return self.x, self.y
   end
   
+  self.between = function(vec, a, b)
+    return math.btw(vec.x, a.x, b.x) and math.btw(vec.y, a.y, b.y)
+  end
+  
   return setmetatable(self, {
       __add = function(a, b)
         if type(a) == "number" then
