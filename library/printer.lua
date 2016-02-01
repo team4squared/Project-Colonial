@@ -13,11 +13,11 @@ function printer:new(x, y, lf)
   
   function p:write(m)
     if self.lines < self.maxLines then
-      table.insert(self.lineList, {msg = m, life = 0})
+      table.insert(self.lineList, {msg = tostring(m), life = 0})
       self.lines = self.lines + 1
     else
       table.remove(self.lineList, 1)
-      table.insert(self.lineList, {msg = m, life = 0})
+      table.insert(self.lineList, {msg = tostring(m), life = 0})
     end
   end
   
