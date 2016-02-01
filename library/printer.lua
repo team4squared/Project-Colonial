@@ -26,6 +26,7 @@ function printer:new(x, y, lf)
       m.life = m.life + dt
       if m.life >= self.lineLife then
         table.remove(self.lineList, i)
+        p.lines = p.lines - 1
       end
     end
   end
