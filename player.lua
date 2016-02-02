@@ -3,11 +3,14 @@ player = entity:new()
 
 function player:init(x, y, r)
   self.pos = Vec2(x or 0, y or 0) --Position
+  self.corner = {
+    topLeft = Vec2(0, 0),
+    bottomRight = Vec2(0, 0)
+  }
   self.vel = Vec2(0, 0) --Velocity
   self.speed = 200
   self.rotation = r or 0 --Rotation
-  self.width = 192
-  self.height = 192
+  self.size = Vec2(192, 192)
   self.canvas = love.graphics.newCanvas(self.width, self.height)
   self.image = love.graphics.newImage("images/temp_player.png")
 end
@@ -29,6 +32,9 @@ function player:update(dt)
   end
   
   self.pos = self.pos + self.vel * dt
+  printr:write(self.pos.." "..self.corner.topLeft)
+  
+  
   if mouse.button[1] or keylist.tab then
     self.rotation = mouse.angle(self.pos)
   elseif self.vel ~= 0 then
@@ -40,7 +46,7 @@ function player:draw()
   love.graphics.setCanvas(self.canvas)
     love.graphics.clear()
     love.graphics.setColor(255, 255, 255)
-    love.graphics.draw(self.image, self.width/2, self.height/2, math.pi/2, .5, .5, self.width/2, self.height/2)
+    love.graphics.draw(self.image, self.size.x/2, self.size.y/2, math.pi/2, .5, .5, self.size.x/2, self.size.y/2)
   love.graphics.setCanvas()
-  love.graphics.draw(self.canvas, self.pos.x, self.pos.y, self.rotation, 1, 1, self.width/2, self.height/2)
+  love.graphics.draw(self.canvas, self.pos.x, self.pos.y, self.rotation, 1, 1, self.size.x/2, self.size.y/2)
 end
