@@ -114,6 +114,9 @@ function Vec2(x, y)
           return a.x <= b.x and a.y <= b.y
         end
       end,
+      __concat = function(a, b)
+        return tostring(a)..tostring(b)
+      end,
       __tostring = function(a)
         return "<"..a.x..", "..a.y..">"
       end
