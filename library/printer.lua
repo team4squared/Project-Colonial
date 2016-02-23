@@ -1,6 +1,16 @@
-
+--[[
+  This printer is to draw console output to the window
+  wrather than the console
+  
+  This is usefull if your like me and on mac,
+  which doesn't support the console
+]]--
 printer = {}
 
+--This method will return a new instance of a printer object
+--x - the x coord of the printer
+--y - the y coord of the printer
+--lf - how long a line will be drawn for (secs)
 function printer:new(x, y, lf)
   local p = {}
   p.x = x
@@ -11,6 +21,7 @@ function printer:new(x, y, lf)
   p.lineLife = lf or 5
   p.lineList = {}
   
+  --Writes a line to the printer
   function p:write(m)
     if self.lines < self.maxLines then
       table.insert(self.lineList, {msg = tostring(m), life = 0})
@@ -21,6 +32,9 @@ function printer:new(x, y, lf)
     end
   end
   
+  --Updates the printer
+  --should be called in the love.update callback
+  -- dt - delta time, pass the dt of love.update through this argument
   function p:update(dt)
     for i, m in pairs(self.lineList) do
       m.life = m.life + dt
@@ -31,6 +45,8 @@ function printer:new(x, y, lf)
     end
   end
   
+  --Draws the printer
+  --should be called in the love.draw callback
   function p:draw()
     for i, m in pairs(self.lineList) do
       if i % 2 == 0 then
