@@ -37,6 +37,10 @@ function Vec2(x, y)
     return self.x, self.y
   end
   
+  self.between = function(a, b)
+    return math.btw(self.x, a.x, b.x) and math.btw(self.y, a.y, b.y)
+  end
+  
   return setmetatable(self, {
       __add = function(a, b)
         if type(a) == "number" then
@@ -82,6 +86,36 @@ function Vec2(x, y)
         else
           return Vec2(a.x % b.x, a.y % b.y)
         end
+      end,
+      __eq = function(a, b)
+        if type(a) == "number" then
+          return a == b.x and a == b.y
+        elseif type(b) == "number" then
+          return a.x == b and a.y == b
+        else
+          return a.x == b.x and a.y == b.y
+        end
+      end,
+      __lt = function(a, b)
+        if type(a) == "number" then
+          return a < b.x and a < b.y
+        elseif type(b) == "number" then
+          return a.x < b and a.y < b
+        else
+          return a.x < b.x and a.y < b.y
+        end
+      end,
+      __le = function(a, b)
+        if type(a) == "number" then
+          return a <= b.x and a <= b.y
+        elseif type(b) == "number" then
+          return a.x <= b and a.y <= b
+        else
+          return a.x <= b.x and a.y <= b.y
+        end
+      end,
+      __concat = function(a, b)
+        return tostring(a)..tostring(b)
       end,
       __tostring = function(a)
         return "<"..a.x..", "..a.y..">"

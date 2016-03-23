@@ -12,6 +12,14 @@ function entity:new(t)
   return e
 end
 
+function entity:init() 
+  for i, e in pairs(self.list) do
+    if e.init then
+      e:init()
+    end
+  end
+end
+
 function entity:update(dt)
   for i, e in pairs(self.list) do
     if e.update then

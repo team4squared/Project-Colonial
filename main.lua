@@ -1,12 +1,14 @@
 
 function love.load(args)
+  require("library.printer")
+  require("library.util")
   require("library.vector")
   require("entity")
   require("input")
-  require("player")
   
   input:init()
-  player:init(love.graphics.getWidth()/2, love.graphics.getHeight()/2)
+  printr = printer:new(5, 5)
+  printr:write("Init Printer")
 end
 
 function love.update(dt)
