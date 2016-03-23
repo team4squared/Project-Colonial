@@ -41,7 +41,7 @@ function love.keypressed(key, scode)
 end
 
 function love.keyreleased(key, scode)
-  keylist[tostring(scode)] = false
+  keylist[tostring(scode)] = nil
 end
 
 function love.mousepressed(x, y, button)
@@ -53,5 +53,5 @@ end
 function love.mousereleased(x, y, button)
   mouse.released.x = x
   mouse.released.y = y
-  mouse.button[button] = false
+  mouse.button[button] = nil
 end
