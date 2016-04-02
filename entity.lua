@@ -12,7 +12,7 @@ function entity:new(t)
   return e
 end
 
-function entity:init() 
+function entity:init()
   for i, e in pairs(self.list) do
     if e.init then
       e:init()
